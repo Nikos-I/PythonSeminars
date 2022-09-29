@@ -1,30 +1,28 @@
-# Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 2D пространстве.
-# Пример:
-# - A (3,6); B (2,1) -> 5,09
-# - A (7,-5); B (1,-1) -> 7,21
-import math
+# Напишите программу, которая по заданному номеру четверти, показывает диапазон возможных координат точек в этой четверти (x и y).
 
-# Применено try-except потому что у isdigit() проблемы с отрицательными числами (минус - не считается цифрой)
+
 def int_input(message):
     str1 = input(message)
-    try:
+    if str1.isdigit():
         result = int(str1)
-    except:
+    else:
         print('Введено не число')
         result = -1
-    finally:
-        return result
+    return result
 
-
-def coord_input(point_name):
-    coord = []
-    print('Введите координаты')
-    coord.append(int_input(f"{point_name} X: "))
-    coord.append(int_input(f"{point_name} Y: "))
-    return coord
-
-
-point_a = coord_input('A')
-point_b = coord_input('B')
-distance = math.sqrt(math.pow(point_a[0] - point_b[0], 2) + math.pow(point_a[1] - point_b[1], 2))
-print(f"{distance:.2f}")
+while True:
+    n = int_input('Введите номер четверти на плоскости (0 - выход]): ')
+    if n == 0:
+        break
+    elif n == 1:
+        print('x > 0 и y > 0')
+    elif n == 2:
+        print('x < 0 и y > 0')
+    elif n == 3:
+        print('x < 0 и y < 0')
+    elif n == 4:
+        print('x > 0 и y < 0')
+    elif n < 1 or n > 4:
+        print('Неверное значение')
+        
+    
