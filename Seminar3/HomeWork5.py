@@ -10,8 +10,19 @@ fib2 = 1
 n = input("Номер элемента ряда Фибоначчи: ")
 n = int(n) + 1
 
-print(fib1, fib2, end=' ')
+fib_list = []
+fib_list1 = []
+fib_list.append(fib1)
+fib_list.append(fib2)
+fib_list1.append(fib2)
 
 for i in range(2, n):
     fib1, fib2 = fib2, fib1 + fib2
-    print(fib2, end=' ')
+    fib_list.append(fib2)   
+    fib_list1.append(fib2)   
+
+fib_list1.reverse()
+fib_list1 = list(map(lambda x: x * -1, fib_list1))
+fib_list1.extend(fib_list)
+
+print(fib_list1)    
