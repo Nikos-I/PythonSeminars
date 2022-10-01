@@ -25,3 +25,19 @@ for c in resStr:
     if c.isdigit():
         sumDigit += int(c)
 print(sumDigit)
+
+
+# С семинара
+
+# n = input("Введите число = ").replace('.', '').replace('-', '')
+# while not n.isdigit():
+#     n = input("Введите число = ").replace('.', '').replace('-', '')
+
+# my_sum = 0
+# # for i in s:
+# #     my_sum += int(i)
+# n = list(n)
+# print(map(int,n))
+# my_sum = sum(list(map(int,n)))
+# print(my_sum)
+
