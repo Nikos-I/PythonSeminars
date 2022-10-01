@@ -6,7 +6,7 @@
 
 # Пример неверный - мин. дробная часть = 0
 
-my_list = [1.1, 1.2, 3.1, 5.001, 10.01]
+my_list = [1.1, 1.2, 3.1, 5, 10.01]
 frac_min = frac_max = round(my_list[0] % 1, 4)
 
 for i in range(1, len(my_list)):
