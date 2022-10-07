@@ -1,0 +1,15 @@
+# import math
+
+
+# n = 6
+# m = 4
+
+# print((n * m) // math.gcd(n , m)) 
+
+# def gcd(a, b):
+#   while b:
+#     a, b = b, a % b
+#   return a
+# def mcd(n,m):
+#     return (n/gcd(n,m))*m  
+# print(int(mcd(n,m)))

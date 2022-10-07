@@ -41,3 +41,10 @@ print(sumDigit)
 # my_sum = sum(list(map(int,n)))
 # print(my_sum)
 
+# n = float(input('Введите вещественное число: '))
+# sum = 0 
+# while not n.is_integer(): 
+#         n = n*10 
+# while n != 0: 
+#     sum += n % 10 
+#     n //= 10
