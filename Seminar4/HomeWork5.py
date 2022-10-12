@@ -2,29 +2,21 @@
 # Задача - сформировать файл, содержащий сумму многочленов.
 
 import io
-from random import randint
+from sympy import *
 
+NUM_STEPS = 2
 
+str_one = ''
+str_two = ''
+str_sum = ''
+list_source = []
 
-# for i in range(1, 2):
-#     with io.open(f'polynom{i}.txt', 'r') as f:
-#         for line in f:
-#             print(line)
-            
-#         poly_txt = for d_poly in line:
+for i in range(1, NUM_STEPS+1):
+    with io.open(f'polynom_text{i}.txt', 'r') as f:
+        list_source.append(f.readline()[:-1])
 
-#         k_poly = randint(k_min, k_max)
-#         k_sign = '+' if k_poly > 0 else '-'
-#         k_poly = abs(k_poly)
-#         if k_poly != 0:
-#             if d_poly == 0:
-#                 tmp_str = f' {k_sign} {k_poly}'
-#             elif d_poly == 1:
-#                 tmp_str = f'{k_sign} {k_poly}x'
-#             elif d_poly == p_degree-1:
-#                 tmp_str = f'{k_poly}x**{d_poly} '
-#             else:
-#                 tmp_str = f'{k_sign} {k_poly}x**{d_poly} '
+str_sum = simplify(list_source[0] + ' + (' + list_source[1] + ')')
+f_out = io.open('polynom_sum.txt', 'w')
+print(str_sum, file=f_out)
+f_out.close()
 
-#         out_str = tmp_str + out_str
-    

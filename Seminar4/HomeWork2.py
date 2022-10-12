@@ -3,7 +3,7 @@
 
 import math 
 
-NUM = 258
+NUM = 26
 
 def prime_factors(inp_num): 
     res_list = []

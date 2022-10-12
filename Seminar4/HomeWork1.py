@@ -6,6 +6,7 @@
 
 import decimal as d 
 import math as m
+from unicodedata import decimal
 
 
 # from unicodedata import digit
@@ -41,6 +42,8 @@ while accurace:
     res_val = d.Decimal('0.0')
     input_number = float_input('Введите вещественное число: ')
     if accurace > 1:
+        res_val = d.Decimal(m.pi)
+        res_val = 0
         res_val += d.Decimal(m.pi)
         print(f'PI={res_val}')
         res_val = d.Decimal(m.pi) * d.Decimal(input_number)
