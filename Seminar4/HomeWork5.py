@@ -1,4 +1,4 @@
-# 5. Даны два файла, в каждом из которых находится запись многочлена. 
+# 5. Даны два файла, в каждом из которых находится запись многочлена.
 # Задача - сформировать файл, содержащий сумму многочленов.
 
 import io
@@ -6,8 +6,6 @@ from sympy import *
 
 NUM_STEPS = 2
 
-str_one = ''
-str_two = ''
 str_sum = ''
 list_source = []
 
@@ -19,4 +17,3 @@ str_sum = simplify(list_source[0] + ' + (' + list_source[1] + ')')
 f_out = io.open('polynom_sum.txt', 'w')
 print(str_sum, file=f_out)
 f_out.close()
-
