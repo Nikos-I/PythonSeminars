@@ -8,8 +8,8 @@
 import io
 from random import randint
 
-KOEFF_MIN = -2
-KOEFF_MAX = 2
+KOEFF_MIN = -20
+KOEFF_MAX = 20
 NUM_STEPS = 2
 
 
