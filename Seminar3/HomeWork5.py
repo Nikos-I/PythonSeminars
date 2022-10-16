@@ -3,53 +3,25 @@
 # - для k = 8
 # список будет выглядеть так: [-21 ,13, -8, 5, −3, 2, −1, 1, 0, 1, 1, 2, 3, 5, 8, 13, 21]
 
-
-fib1 = 0
-fib2 = 1
-
-n = input("Номер элемента ряда Фибоначчи: ")
-n = int(n) + 1
-
-fib_list = []
-fib_list1 = []
-fib_list.append(fib1)
-fib_list.append(fib2)
-fib_list1.append(fib2)
-
-for i in range(2, n):
-    fib1, fib2 = fib2, fib1 + fib2
-    fib_list.append(fib2)   
-    fib_list1.append(fib2)   
-
-fib_list1.reverse()
-fib_list1 = list(map(lambda x: x * -1, fib_list1))
-fib_list1.extend(fib_list)
-print(fib_list1)    
+fib1, fib2 = 1, 1
+fib_list = [0]
 
 
-def input_numbers ():
-    while True :
-        numb = input('введите число - ')
-        try:
-            numbers = int(numb)
-            return numbers
-        except:
-            print('не число')
-
-# def get_two_numb (num):
-#     numb_1 = 1
-#     numb_2 = 1
-#     fibo_nums = []
-#     for i in range(num):
-#         fibo_nums.append(numb_1)
-#         numb_1, numb_2 = numb_2, numb_1 + numb_2
-#     numb_1 = 0
-#     numb_2 = 1
-#     for i in range(num+1):
-#         fibo_nums.insert(0, numb_1)
-#         numb_1, numb_2 = numb_2, numb_1 - numb_2
-#     return fibo_nums
+def int_input(message):
+    str1 = input(message)
+    if str1.isdigit():
+        result = int(str1)
+    else:
+        print('Введено не число')
+        result = -1
+    return result
 
 
-# number = input_numbers()
-# print(f'числа негафибаначчи - {get_two_numb(number)}')
+input_number = int_input("Номер элемента ряда Фибоначчи: ")
+
+for i in range(input_number):
+    fib_list.append(fib1)
+    fib_list.insert(0, fib1 * (-1)**i)
+    fib1, fib2 = fib2, fib1+fib2
+
+print(fib_list)
