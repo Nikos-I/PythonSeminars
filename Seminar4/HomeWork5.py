@@ -10,10 +10,13 @@ str_sum = ''
 list_source = []
 
 for i in range(1, NUM_STEPS+1):
-    with io.open(f'polynom_text{i}.txt', 'r') as f:
+    with io.open(f'd:\GoogleDisk\GeekBraims\Python\PythonSeminars\Seminar4\polynom_text{i}.txt', 'r') as f:
         list_source.append(f.readline()[:-1])
 
 str_sum = simplify(list_source[0] + ' + (' + list_source[1] + ')')
+print(list_source[0])
+print(list_source[1])
+print(str_sum)
 f_out = io.open('polynom_sum.txt', 'w')
 print(str_sum, file=f_out)
 f_out.close()
