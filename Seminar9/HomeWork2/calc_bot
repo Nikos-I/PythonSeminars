@@ -1,9 +1,10 @@
-import numexpr as ne
+# import numexpr as ne
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import logging
 
 
+# Вычислить выражение
 def calc_expr(in_str: str):
     tuple_valid = {'0', '1', '2', '3', '4', '5', '6', '7',
                    '8', '9', '(', ')', '+', '-', '*', '/', '.', 'j', ' '}
@@ -28,13 +29,13 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
                  '/hello - Приветствие\n' +
                  '/help - Список команд\n' +
                  '/calc выражение - Вычисление выражения\n\n' +
-                 '\t Калькулятор вычисляет любые арифметические выражения, включая комплексные\n' +
+                 '\t Калькулятор вычисляет любые арифметические выражения, включая с комплексными числами\n' +
                  '\t Выражение должно быть правильным с точки зрения языка Python\n' +
                  '\t В выражении допускаются только символы 0 1 2 3 4 5 6 7 8 9 ( ) + - * / . j пробел\n' 
                  )
     await update.message.reply_text(help_text)
 
-# Вычисление выражения
+# Обработка команды "Вычисление выражения"
 async def calc_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = update.message.text
     logging.info(f'{update.effective_user.first_name} вызвал {msg}')
@@ -52,7 +53,7 @@ logging.basicConfig(format = "%(asctime)s - %(levelname)s - %(message)s",
 
 # Создаем экземпляр бота
 app = ApplicationBuilder().token(
-    '5632320403:AAHP0g8O1VtONC_h3kVmFQc57VMFpM79ahM').build()
+    'Токен').build()
 logging.info('Start bot')
 app.add_handler(CommandHandler("hello", hello_command))
 app.add_handler(CommandHandler("help", help_command))
