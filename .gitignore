@@ -130,3 +130,7 @@ dmypy.json
 
 test.py
 .bin
+
+# Логи
+.log
+

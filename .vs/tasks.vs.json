@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "задача-HomeWork1",
+      "appliesTo": "Seminar1/HomeWork1.py",
+      "type": "launch"
+    }
+  ]
+}

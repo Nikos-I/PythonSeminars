@@ -1,53 +1,61 @@
 import numexpr as ne
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+import logging
+
 
 def calc_expr(in_str: str):
-    tuple_valid = {'0','1','2','3','4','5','6','7','8','9','(',')','+','-','*','/','.','j',' '}
-    if  not [s for s in list(in_str) if not (s in tuple_valid)]: 
-        return ne.evaluate(in_str)
+    tuple_valid = {'0', '1', '2', '3', '4', '5', '6', '7',
+                   '8', '9', '(', ')', '+', '-', '*', '/', '.', 'j', ' '}
+    if not [s for s in list(in_str) if not (s in tuple_valid)]:
+        try:
+            return eval(in_str)
+        except:
+            return 'Ошибка в выражении. Не может быть вычислено'
     else:
-        return 'Неверное выражение' 
-
-
-# a = '(2+7j) + (4-3j)'
-
-
-
-# input_str = '(67-12j)+(9-1j)'
-# result = calc_expr(input_str)
-# result = calc_expr(a)
-# print(result)
+        return 'Недопустимые символы в выражении'
 
 
 async def hello_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    logging.info(f'{update.effective_user.first_name} вызвал /hello')
     await update.message.reply_text(f'Hello {update.effective_user.first_name}')
 
+
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    help_text = ('Привет! \n' + 
-                'Это список команд:\n' + 
-                '/hello - Приветствие\n' + 
-                '/help - Список команд\n' + 
-                '/calc выражение - Вычисление выражения\n'
-                )
+    logging.info(f'{update.effective_user.first_name} вызвал /help')
+    help_text = ('Привет! \n' +
+                 'Это калькулятор арифметических выражений:\n' +
+                 '/hello - Приветствие\n' +
+                 '/help - Список команд\n' +
+                 '/calc выражение - Вычисление выражения\n\n' +
+                 '\t Калькулятор вычисляет любые арифметические выражения, включая комплексные\n' +
+                 '\t Выражение должно быть правильным с точки зрения языка Python\n' +
+                 '\t В выражении допускаются только символы 0 1 2 3 4 5 6 7 8 9 ( ) + - * / . j пробел\n' 
+                 )
     await update.message.reply_text(help_text)
 
+# Вычисление выражения
 async def calc_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-   msg = update.message.text
-   print(msg)
-   res = calc_expr(msg.partition('/calc ')[2])
-   print(res)
+    msg = update.message.text
+    logging.info(f'{update.effective_user.first_name} вызвал {msg}')
+    expr_val = msg.partition('/calc ')[2]
+    res = calc_expr(expr_val)
+    logging.info(f'{update.effective_user.first_name} получил результат: {res}')
+    await update.message.reply_text(f'Результат: {res}')
 
-   await update.message.reply_text(f'Результат вычисления: {res}')
-    
-    
+# Включаем логирование 
+logging.basicConfig(format = "%(asctime)s - %(levelname)s - %(message)s", 
+                    level = logging.INFO, 
+                    filename = "bot.log", 
+                    encoding='utf-8'
+                    )
+
 # Создаем экземпляр бота
-app = ApplicationBuilder().token('5632320403:AAHP0g8O1VtONC_h3kVmFQc57VMFpM79ahM').build()
-
+app = ApplicationBuilder().token(
+    '5632320403:AAHP0g8O1VtONC_h3kVmFQc57VMFpM79ahM').build()
+logging.info('Start bot')
 app.add_handler(CommandHandler("hello", hello_command))
 app.add_handler(CommandHandler("help", help_command))
 app.add_handler(CommandHandler("calc", calc_command))
 
 app.run_polling()
-
-
