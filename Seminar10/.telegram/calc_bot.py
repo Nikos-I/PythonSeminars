@@ -1,7 +1,10 @@
 import logging
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
-from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
+from telegram import *
+# from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+
+from telegram.ext import *
+# from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
@@ -51,11 +54,12 @@ def help_command(update, _):
 if __name__ == '__main__':
     # в версии 13.x создаются 2 объекта:
     # `updater` и диспетчер `app`
-    updater = Updater("5632320403:AAHP0g8O1VtONC_h3kVmFQc57VMFpM79ahM", use_context=True)
-    app = updater.dispatcher
-    # для версии 20.x необходимо создать только 1 объект 
+    # updater = Updater("5632320403:AAHP0g8O1VtONC_h3kVmFQc57VMFpM79ahM")
+    # app = updater.dispatcher
+    # # для версии 20.x необходимо создать только 1 объект 
     # приложение через `Application.builder()`
-    # app = Application.builder().token("TOKEN").build()
+    
+    app = Application.builder().token("5632320403:AAHP0g8O1VtONC_h3kVmFQc57VMFpM79ahM").build()
 
     app.add_handler(CommandHandler('start', start))
     app.add_handler(CallbackQueryHandler(button))
@@ -63,8 +67,8 @@ if __name__ == '__main__':
 
     # Запуск бота в версии 13.x происходит 
     # через объект `updater`
-    updater.start_polling()
-    updater.idle()
+    # updater.start_polling()
+    # updater.idle()
 
     # Запуск бота в версии 20.x 
-    # app.run_polling()
+    app.run_polling()
